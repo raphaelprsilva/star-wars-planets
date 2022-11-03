@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 
 import PlanetsContext from '../../context/PlanetsContext';
 import Select from '../Select';
+import Input from '../Input';
 
 const columnsOptions = [
   'population',
@@ -56,17 +57,16 @@ const PlanetsFilterForm = () => {
         handleChange={ ({ target }) => setComparison(target.value) }
         options={ comparisonOptions }
       />
-      <label htmlFor="value-filter">
-        Valor:
-        <input
-          type="number"
-          name="value-filter"
-          data-testid="value-filter"
-          id="value-filter"
-          value={ value }
-          onChange={ ({ target }) => setValue(target.value) }
-        />
-      </label>
+      <Input
+        dataTestId="value-filter"
+        id="value-filter"
+        label="Valor:"
+        name="value-filter"
+        type="number"
+        placeholder="Digite o valor"
+        value={ value }
+        handleChange={ ({ target }) => setValue(target.value) }
+      />
       <button type="submit" data-testid="button-filter">Filtrar</button>
     </form>
   );
