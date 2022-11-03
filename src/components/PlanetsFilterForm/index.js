@@ -1,6 +1,17 @@
 import React, { useState, useContext } from 'react';
 
 import PlanetsContext from '../../context/PlanetsContext';
+import Select from '../Select';
+
+const columnsOptions = [
+  'population',
+  'orbital_period',
+  'diameter',
+  'rotation_period',
+  'surface_water',
+];
+
+const comparisonOptions = ['maior que', 'menor que', 'igual a'];
 
 const PlanetsFilterForm = () => {
   const [column, setColumn] = useState('population');
@@ -25,38 +36,26 @@ const PlanetsFilterForm = () => {
     });
   };
 
+  const filteredColumnsOptions = columnsOptions.filter((option) => (
+    !filterByNumericValues.some((filter) => filter.column === option)
+  ));
+
   return (
     <form onSubmit={ applyFilter }>
-      <label htmlFor="column-filter">
-        Filtrar por coluna:
-        <select
-          name="column-filter"
-          id="column-filter"
-          data-testid="column-filter"
-          value={ column }
-          onChange={ ({ target }) => setColumn(target.value) }
-        >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
-        </select>
-      </label>
-      <label htmlFor="comparison-filter">
-        Operador:
-        <select
-          name="comparison-filter"
-          id="comparison-filter"
-          data-testid="comparison-filter"
-          value={ comparison }
-          onChange={ ({ target }) => setComparison(target.value) }
-        >
-          <option value="maior que">maior que</option>
-          <option value="menor que">menor que</option>
-          <option value="igual a">igual a</option>
-        </select>
-      </label>
+      <Select
+        name="column-filter"
+        label="Filtrar por coluna:"
+        value={ column }
+        handleChange={ ({ target }) => setColumn(target.value) }
+        options={ filteredColumnsOptions }
+      />
+      <Select
+        name="comparison-filter"
+        label="Operador:"
+        value={ comparison }
+        handleChange={ ({ target }) => setComparison(target.value) }
+        options={ comparisonOptions }
+      />
       <label htmlFor="value-filter">
         Valor:
         <input
