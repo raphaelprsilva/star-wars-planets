@@ -5,8 +5,8 @@ const usePlanetsFilters = () => {
     filterByName: { name: '' },
     filterByNumericValues: [],
     order: {
-      column: 'name',
-      sort: 'ASC',
+      column: '',
+      sort: '',
     },
   });
 
