@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 
 import PlanetsContext from '../../context/PlanetsContext';
+import TableBody from './TableBody';
+import TableHead from './TableHead/index';
+
+const SORT_ORDER_FACTOR = -1;
 
 const Table = () => {
   const { data: planets, loading, filters } = useContext(PlanetsContext);
-  const {
-    filterByName: { name },
-    filterByNumericValues,
-  } = filters;
+  const { filterByName: { name }, filterByNumericValues, order } = filters;
 
   const filterPlanetsByNumericValues = (arr) => {
     if (arr.length > 0) {
@@ -33,7 +34,9 @@ const Table = () => {
     return planets;
   };
 
-  const filteredByNumericValues = filterPlanetsByNumericValues(filterByNumericValues);
+  const filteredByNumericValues = filterPlanetsByNumericValues(
+    filterByNumericValues,
+  );
   const planetsToRender = filteredByNumericValues || planets;
 
   const setTableColumns = (planetsData) => {
@@ -48,38 +51,28 @@ const Table = () => {
     return columnsNamesCapitalized;
   };
 
+  const compare = (a, b) => {
+    const firstValue = a[order.column] === 'unknown' ? 0 : a[order.column];
+    const secondValue = b[order.column] === 'unknown' ? 0 : b[order.column];
+
+    if (order.sort === 'ASC') {
+      return Number(firstValue) > Number(secondValue) ? 1 : SORT_ORDER_FACTOR;
+    }
+    return Number(firstValue) < Number(secondValue) ? 1 : SORT_ORDER_FACTOR;
+  };
+
   return loading ? (
     <div>Loading...</div>
   ) : (
     <table>
-      <thead>
-        <tr>
-          {setTableColumns(planets).map((tableColumn) => (
-            <th key={ tableColumn }>{tableColumn}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {planetsToRender
-          .filter((planet) => planet.name.includes(name))
-          .map((planet) => (
-            <tr key={ planet.name }>
-              <td>{planet.name}</td>
-              <td>{planet.rotation_period}</td>
-              <td>{planet.orbital_period}</td>
-              <td>{planet.diameter}</td>
-              <td>{planet.climate}</td>
-              <td>{planet.gravity}</td>
-              <td>{planet.terrain}</td>
-              <td>{planet.surface_water}</td>
-              <td>{planet.population}</td>
-              <td>{planet.films}</td>
-              <td>{planet.created}</td>
-              <td>{planet.edited}</td>
-              <td>{planet.url}</td>
-            </tr>
-          ))}
-      </tbody>
+      <TableHead
+        columns={ setTableColumns(planetsToRender) }
+      />
+      <TableBody
+        arr={ planetsToRender }
+        compare={ compare }
+        name={ name }
+      />
     </table>
   );
 };
