@@ -4,14 +4,17 @@ import PlanetsContext from '../../context/PlanetsContext';
 
 const Table = () => {
   const { data: planets, loading, filters } = useContext(PlanetsContext);
-  const { filterByName: { name } } = filters;
+  const { filterByName: { name }, filterByNumericValues } = filters;
+  const { column, comparison, value } = filterByNumericValues;
 
   const setTableColumns = (planetsData) => {
     const columnsKeys = Object.keys(planetsData[0]);
-    const columnsWithoutResident = columnsKeys.filter((column) => column !== 'residents');
-    const columnsNames = columnsWithoutResident.map((column) => column.replace('_', ' '));
+    const columnsWithoutResident = columnsKeys
+      .filter((col) => col !== 'residents');
+    const columnsNames = columnsWithoutResident
+      .map((col) => col.replace('_', ' '));
     const columnsNamesCapitalized = columnsNames.map(
-      (column) => column.charAt(0).toUpperCase() + column.slice(1),
+      (col) => col.charAt(0).toUpperCase() + col.slice(1),
     );
     return columnsNamesCapitalized;
   };
@@ -23,14 +26,27 @@ const Table = () => {
       <table>
         <thead>
           <tr>
-            {setTableColumns(planets).map((column) => (
-              <th key={ column }>{column}</th>
-            ))}
+            {setTableColumns(planets)
+              .map((tableColumn) => (
+                <th key={ tableColumn }>{tableColumn}</th>
+              ))}
           </tr>
         </thead>
         <tbody>
           {planets
             .filter((planet) => planet.name.includes(name))
+            .filter((planet) => {
+              if (comparison === 'maior que') {
+                return +planet[column] > +value;
+              }
+              if (comparison === 'menor que') {
+                return +planet[column] < +value;
+              }
+              if (comparison === 'igual a') {
+                return +planet[column] === +value;
+              }
+              return true;
+            })
             .map((planet) => (
               <tr key={ planet.name }>
                 <td>{planet.name}</td>
