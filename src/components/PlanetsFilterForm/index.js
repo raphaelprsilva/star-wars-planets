@@ -14,12 +14,14 @@ const PlanetsFilterForm = () => {
     event.preventDefault();
     setFilters({
       ...filters,
-      filterByNumericValues: {
+      filterByNumericValues: [
         ...filterByNumericValues,
-        column,
-        comparison,
-        value,
-      },
+        {
+          column,
+          comparison,
+          value,
+        },
+      ],
     });
   };
 
