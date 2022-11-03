@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import PlanetsContext from '../../context/PlanetsContext';
 
 import Input from '../Input';
+import PlanetsAscDesc from '../PlanetsAscDesc';
 import PlanetsFilterForm from '../PlanetsFilterForm';
 
 const PlanetsFilters = () => {
@@ -32,6 +33,7 @@ const PlanetsFilters = () => {
         handleChange={ handleChange }
       />
       <PlanetsFilterForm />
+      <PlanetsAscDesc />
     </>
   );
 };
