@@ -1,18 +1,11 @@
 import React, { useState, useContext } from 'react';
 
 import PlanetsContext from '../../context/PlanetsContext';
+
 import Select from '../Select';
 import Input from '../Input';
 
-const columnsOptions = [
-  'population',
-  'orbital_period',
-  'diameter',
-  'rotation_period',
-  'surface_water',
-];
-
-const comparisonOptions = ['maior que', 'menor que', 'igual a'];
+import { columnsOptions, comparisonOptions } from '../../helpers/options';
 
 const PlanetsFilterForm = () => {
   const [column, setColumn] = useState('population');
