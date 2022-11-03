@@ -37,6 +37,7 @@ const FilterItems = () => {
             <div>
               <button
                 type="button"
+                data-testid="filter"
                 onClick={ removeFilter }
                 data-filter={ `${filter.column}-${filter.comparison}-${filter.value}` }
               >

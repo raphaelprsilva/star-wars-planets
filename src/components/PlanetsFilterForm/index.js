@@ -37,6 +37,13 @@ const PlanetsFilterForm = () => {
     });
   };
 
+  const removeAllFilters = () => {
+    setFilters({
+      ...filters,
+      filterByNumericValues: [],
+    });
+  };
+
   const filteredColumnsOptions = columnsOptions.filter((option) => (
     !filterByNumericValues.some((filter) => filter.column === option)
   ));
@@ -68,6 +75,13 @@ const PlanetsFilterForm = () => {
         handleChange={ ({ target }) => setValue(target.value) }
       />
       <button type="submit" data-testid="button-filter">Filtrar</button>
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ removeAllFilters }
+      >
+        Limpar filtros
+      </button>
     </form>
   );
 };
