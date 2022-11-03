@@ -27,13 +27,17 @@ const Input = ({
   </div>
 );
 
+Input.defaultProps = {
+  placeholder: '',
+};
+
 Input.propTypes = {
   dataTestId: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   handleChange: PropTypes.func.isRequired,
 };
