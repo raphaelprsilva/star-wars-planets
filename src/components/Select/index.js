@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as S from './styled';
+
 const Select = ({ name, label, value, handleChange, options }) => (
-  <div>
+  <S.SelectWrapper>
     <label htmlFor={ name }>{label}</label>
-    <select
+    <S.SelectOptions
       name={ name }
       id={ name }
       data-testid={ name }
@@ -16,8 +18,8 @@ const Select = ({ name, label, value, handleChange, options }) => (
           {option}
         </option>
       ))}
-    </select>
-  </div>
+    </S.SelectOptions>
+  </S.SelectWrapper>
 );
 
 Select.propTypes = {
