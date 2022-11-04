@@ -7,6 +7,9 @@ export const FormWrapper = styled.form`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  border: 1px solid var(--borders);
+  border-radius: 5px;
+  background-color: var(--mediumBackground);
 
   width: 1200px;
   height: 210px;
