@@ -94,6 +94,7 @@ const GlobalStyles = createGlobalStyle`
     --contrast: #b469ff;
     --contrast3: #0016d2;
     --highlight: #ffe81f;
+    --darkYellow: #d2bc00;
     --lightContrast: #cd9ccf;
     --mediumBackground: #192734;
     --postColor: #fff;
