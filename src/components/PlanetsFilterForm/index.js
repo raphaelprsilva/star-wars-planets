@@ -4,9 +4,11 @@ import PlanetsContext from '../../context/PlanetsContext';
 
 import Select from '../Select';
 import Input from '../Input';
+import Button from '../Button';
 
 import { columnsOptions, comparisonOptions } from '../../helpers/options';
-import Button from '../Button/index';
+
+import * as S from './styled';
 
 const PlanetsFilterForm = () => {
   const [column, setColumn] = useState('population');
@@ -43,7 +45,7 @@ const PlanetsFilterForm = () => {
   ));
 
   return (
-    <form onSubmit={ applyFilter }>
+    <S.FormWrapper onSubmit={ applyFilter }>
       <Select
         name="column-filter"
         label="Filtrar por coluna:"
@@ -79,7 +81,7 @@ const PlanetsFilterForm = () => {
         onClick={ removeAllFilters }
         name="Remover filtros"
       />
-    </form>
+    </S.FormWrapper>
   );
 };
 
