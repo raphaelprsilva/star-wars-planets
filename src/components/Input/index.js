@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as S from './styled';
+
 const Input = ({
   id,
   label,
@@ -11,20 +13,20 @@ const Input = ({
   placeholder,
   handleChange,
 }) => (
-  <div>
+  <S.InputWrapper>
     <label htmlFor={ id }>
       {label}
-      <input
-        placeholder={ placeholder }
-        data-testid={ dataTestId }
-        type={ type }
-        name={ name }
-        value={ value }
-        id={ id }
-        onChange={ handleChange }
-      />
     </label>
-  </div>
+    <S.Input
+      placeholder={ placeholder }
+      data-testid={ dataTestId }
+      type={ type }
+      name={ name }
+      value={ value }
+      id={ id }
+      onChange={ handleChange }
+    />
+  </S.InputWrapper>
 );
 
 Input.defaultProps = {
