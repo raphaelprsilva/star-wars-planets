@@ -4,6 +4,7 @@ import media from 'styled-media-query';
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 1rem;
 
   label {
     margin-bottom: 0.5rem;
