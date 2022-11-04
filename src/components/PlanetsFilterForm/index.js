@@ -72,12 +72,12 @@ const PlanetsFilterForm = () => {
       />
       <Button
         type="submit"
-        data-testid="button-filter"
+        testId="button-filter"
         name="Filtrar"
       />
       <Button
         type="button"
-        data-testid="button-remove-filters"
+        testId="button-remove-filters"
         onClick={ removeAllFilters }
         name="Remover filtros"
       />
