@@ -3,8 +3,10 @@ import media from 'styled-media-query';
 
 export const InputWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.type === 'radio' ? 'row' : 'column')};
   margin-right: 1rem;
+  height: ${(props) => (props.type === 'radio' && '40px')};
+  align-items: ${(props) => (props.type === 'radio' && 'center')};
 
   label {
     margin-bottom: 0.5rem;
@@ -30,8 +32,8 @@ export const Input = styled.input`
   transition: 0.3s;
   -webkit-transition: 0.3s;
 
-  width: 300px;
-  height: 45px;
+  width: ${(props) => (props.type === 'radio' ? '40px' : '300px')};
+  height: ${(props) => (props.type === 'radio' ? '15px' : '45px')};
   left: 454px;
   top: 525px;
 

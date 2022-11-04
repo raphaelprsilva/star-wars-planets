@@ -13,7 +13,7 @@ const Input = ({
   placeholder,
   handleChange,
 }) => (
-  <S.InputWrapper>
+  <S.InputWrapper type={ type }>
     <label htmlFor={ id }>
       {label}
     </label>
