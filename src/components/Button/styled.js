@@ -9,6 +9,7 @@ export const ButtonWrapper = styled.button`
   align-items: center;
   padding: 8px 32px;
   margin-top: 1rem;
+  margin-right: 1rem;
   gap: 10px;
 
   width: 300px;
