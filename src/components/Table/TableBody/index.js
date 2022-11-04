@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import * as S from './styled';
+
 const TableBody = ({ arr, compare, name }) => (
-  <tbody>
+  <S.TableData>
     {arr
       .sort(compare)
       .filter((planet) => planet.name.includes(name))
       .map((planet) => (
-        <tr key={ planet.name }>
+        <S.TableRow key={ planet.name }>
           <td data-testid="planet-name">{planet.name}</td>
           <td>{planet.rotation_period}</td>
           <td>{planet.orbital_period}</td>
@@ -21,9 +23,9 @@ const TableBody = ({ arr, compare, name }) => (
           <td>{planet.created}</td>
           <td>{planet.edited}</td>
           <td>{planet.url}</td>
-        </tr>
+        </S.TableRow>
       ))}
-  </tbody>
+  </S.TableData>
 );
 
 TableBody.propTypes = {
