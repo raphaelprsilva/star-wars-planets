@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 
 import PlanetsContext from '../../context/PlanetsContext';
+import FilterItem from './FilterItem';
+import * as S from './styled';
 
 const FilterItems = () => {
   const { filters, setFilters } = useContext(PlanetsContext);
@@ -24,32 +26,22 @@ const FilterItems = () => {
   };
 
   return (
-    <section>
-      <h2>Filter Items</h2>
-      {filterByNumericValues.length > 0 ? (
-        filterByNumericValues.map((filter) => (
-          <div key={ filter.column }>
-            <div>
-              <p>{filter.column}</p>
-              <p>{filter.comparison}</p>
-              <p>{filter.value}</p>
-            </div>
-            <div>
-              <button
-                type="button"
-                data-testid="filter"
-                onClick={ removeFilter }
-                data-filter={ `${filter.column}-${filter.comparison}-${filter.value}` }
-              >
-                X
-              </button>
-            </div>
-          </div>
-        ))
-      ) : (
-        <p>Nenhum filtro numérico aplicado</p>
-      )}
-    </section>
+    <>
+      <S.Title>Filtros Aplicados</S.Title>
+      <S.Wrapper>
+        {filterByNumericValues.length > 0 ? (
+          filterByNumericValues.map((filter) => (
+            <FilterItem
+              key={ filter.column }
+              filter={ filter }
+              removeFilter={ removeFilter }
+            />
+          ))
+        ) : (
+          <p>Nenhum filtro numérico aplicado</p>
+        )}
+      </S.Wrapper>
+    </>
   );
 };
 
