@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 
 import PlanetsContext from '../../context/PlanetsContext';
 import TableBody from './TableBody';
-import TableHead from './TableHead/index';
+import TableHead from './TableHead';
+
+import * as S from './styled';
 
 const SORT_ORDER_FACTOR = -1;
 
@@ -64,16 +66,18 @@ const Table = () => {
   return loading ? (
     <div>Loading...</div>
   ) : (
-    <table>
-      <TableHead
-        columns={ setTableColumns(planetsToRender) }
-      />
-      <TableBody
-        arr={ planetsToRender }
-        compare={ compare }
-        name={ name }
-      />
-    </table>
+    <S.TableWrapper>
+      <S.Table>
+        <TableHead
+          columns={ setTableColumns(planetsToRender) }
+        />
+        <TableBody
+          arr={ planetsToRender }
+          compare={ compare }
+          name={ name }
+        />
+      </S.Table>
+    </S.TableWrapper>
   );
 };
 
