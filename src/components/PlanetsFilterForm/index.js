@@ -6,6 +6,7 @@ import Select from '../Select';
 import Input from '../Input';
 
 import { columnsOptions, comparisonOptions } from '../../helpers/options';
+import Button from '../Button/index';
 
 const PlanetsFilterForm = () => {
   const [column, setColumn] = useState('population');
@@ -67,14 +68,17 @@ const PlanetsFilterForm = () => {
         value={ value }
         handleChange={ ({ target }) => setValue(target.value) }
       />
-      <button type="submit" data-testid="button-filter">Filtrar</button>
-      <button
+      <Button
+        type="submit"
+        data-testid="button-filter"
+        name="Filtrar"
+      />
+      <Button
         type="button"
         data-testid="button-remove-filters"
         onClick={ removeAllFilters }
-      >
-        Limpar filtros
-      </button>
+        name="Remover filtros"
+      />
     </form>
   );
 };
