@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as S from './styled';
+
 const TableHead = ({ columns }) => (
-  <thead>
+  <S.TableHead>
     <tr>
       {columns.map((tableColumn) => (
         <th key={ tableColumn }>{tableColumn}</th>
       ))}
     </tr>
-  </thead>
+  </S.TableHead>
 );
 
 TableHead.propTypes = {
